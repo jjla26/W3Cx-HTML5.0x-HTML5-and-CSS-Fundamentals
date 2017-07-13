@@ -166,6 +166,7 @@ Global attributes
 Global attributes can be applied to all tags. They are common attributes. Examples of global attributes are id and class. There are many more global attributes. Here is a list of all the global attributes and the values they accept. 
 
 So attributes like id and class can be applied to any HTML tag.
+
 ```[html]
 <p id="para1" class="poetry" lang="en">The global attribute lang takes language codes for values. The code for English is 'en'.</p>
 
@@ -175,9 +176,15 @@ So attributes like id and class can be applied to any HTML tag.
 ```
 Non-global attributes
 
-Non-global attributes are attributes applied to a specific instance of a tag. It can be applied to one or more tags. For example, start is an attribute for the <ol> tag and it cannot be applied on the <p> or <h1> tags, it is specific to only ordered lists - <ol>. Another attribute specific to the <ol> tag is reversed, which we learned in the last unit as an example of a boolean attribute. The non-global attribute width can be applied to several tags such as <img>, <input> and <video>.
+Non-global attributes are attributes applied to a specific instance of a tag. It can be applied to one or more tags. For example, start is an attribute for the <ol> tag and it cannot be applied on the `
+```[html]
+<p> or <h1>
+```
+
+tags, it is specific to only ordered lists - <ol>. Another attribute specific to the <ol> tag is reversed, which we learned in the last unit as an example of a boolean attribute. The non-global attribute width can be applied to several tags such as <img>, <input> and <video>.
 
 Without the boolean attribute reversed:
+
 ```[html]
 <ol>
    <li>HTML5</li>
