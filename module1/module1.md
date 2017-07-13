@@ -557,3 +557,290 @@ You can do this directly in the code:   <p>This is © 2015. Breach will entail a
 There is no need for the &copy; or &euro; HTML character reference if you are able to type the character itself.
 
 If you'd like to read more information about when to use character references and when not to use them, see Using character escapes in markup and CSS.
+
+# Module 1: My first Web page   1.5 Best practices   The wisdom
+
+# Learning from the mistakes others have made
+
+boy raising hand in class
+
+Children can be great at asking questions about things that most adults take for granted, and like to challenge assumptions.
+
+While it's a great sign of a curious and reasoning mind, it can be overwhelming, and you can't really learn (or teach) everything at once.  Some things are better to be taken on faith in the short term, until you fully understand the issue.
+
+That brings up a term you'll be hearing quite a bit in this class: "Best practice".  It's often said that bad programs can be written in any language, and we've found that to be true (at least in every language we've seen).  Over time, developers learn that some habits are better than others, in other words that some habits , like  avoiding redundancy and repetition, tend to make a program more clear and easier to understand and maintain than other habits, like using goto statements.  It could also be about performance, i.e. in a given language doing a task one way may be faster than another.
+
+A carpenter will tell you that if you want to hammer a nail, it's best to do it in as few strikes as possible (e.g. 2 or 3).  That may not be obvious to non-handy people like me, but I've been told that's the best way by people with a lot more experience than I, so I'll take it on faith (at least for now).
+
+There are sometimes arguments about which are the best practices.  New techniques are discovered, new ideas are born, and sometimes, fashions change. For our purposes and the duration of this course, when we use the term "best practice" you can trust that it is, even though we may not be able to explain it at that point in the course, so you'll want to make it a habit.
+
+#  Module 1: My first Web page   1.5 Best practices   Do's and dont's
+
+#Do's and don'ts
+
+Going the wrong way
+
+The history of Web pages is such that browsers tend to be very forgiving of certain types of mistakes. If you miss a closing tag, it will often work the way you expect. It probably won't crash, or ignore the document, or give up completely, but it might not appear quite the way you meant it to. Or maybe it does look like you want, but you do not want to depend on that. In general Best Practice would be to do it properly, and not depend on the browser to patch it for you..
+
+Because an HTML file essentially represents a tree structure, the open and close tags should always match, and there should not be any overlap with other elements. That is, you can have an element that is enclosed in another element, or you can have two elements side-by-side, but you can never have a situation in which part of an element is in another, but the other part is not.
+```[html]
+<p>This is a <em>paragraph</em></p>
+<h1>Paragraph ahead</h1>
+<p>And here it is.</p>
+```[html]
+The two examples above are fine because in each case either an element is wholly contained in another (<em> in <p>) or they are completely separate (<h1> and <p>).  This, on the other hand, is not valid:
+<h1>Part of this header is<p>in the</h2> paragraph below</p>
+What happens in this case is what we call "undefined". That just means that there is no telling how the browser will decide to handle it. It might decide to automatically close the <p> when it sees another close tag, or it could complain about an unexpected close tag at the header. Then it might complain again when there is a now unexpected close </p> tag.
+
+If you played around with the minimal HTML file from the previous section, you might have noticed that you can get more minimal than that. For example, if you take out the "head" section completely, the browser will still render the page without complaint (at least Chrome will; Firefox does complain in the debugging console, but we will save that for week 4). In fact, you can even take out the "body" open and close tags (not the content, of course) and it will still work as expected. Not only that, if you take out the <!doctype> statement, it still works (and Chrome still doesn't complain!).
+
+What's actually happening is that the browser knows roughly what to expect in an HTML page, so if it sees a file ending in '.html' it will automatically stick some stuff in if it is not there already. It will typically make basic assumptions like: It is an HTML5 file, everything in there is content, so it goes in the <body> section, the <head> section is empty.  If you right-click on an element and choose "Inspect", you will see that the browser has included the <html> section containing the <head> and <body> sections, even though it wasn't there in your file.
+
+Note that we said "typically". The current behavior of most browsers will handle this, but it is "undefined" so there is no guarantee that next weeks update won't break it.  To be correct and complete, you need the <!doctype> section and the <html> section with  <head> and <body>. In any case, it is a good idea (best practice).
+
+Proper indentation is one way to make your code clearer and easier to understand:
+```[html]
+<body>
+<h1>Here is a heading</h1>
+<p>
+<ol><li>List Item 1</li></ol>
+</p>
+</body>
+```
+The code above doesn't give any sense of the structure of the document. By using indentation effectively, you can make it more clear, showing the nesting of elements:
+```[html]
+<body>
+  <h1>Here is a heading</h1>
+  <p>
+    <ol>
+      <li>List Item 1</li>
+    </ol>
+  </p>
+</body>
+```
+Consistent quoting of strings is also helpful, in part to avoid potential problems that can arise when you think something does not need quotes but it actually does.
+
+Often projects will have coding styles that everyone is expected to use so that everything looks consistent and developers can more easily read others code. If you are creating the project, you can decide what the rules are (how many spaces to indent, single or double quotes etc.) but unless there is a good reason to change away from typical practices, it is usually best to adopt them
+
+# Module 1: My first Web page   1.5 Best practices   White space and capitalization
+
+# White space and capitalization
+ Bookmark this page
+White space and other niceties
+
+with great power comes great responsibility
+
+Before we go any further, it's good to understand a few technical details.  
+
+Tags are case insensitive
+
+You might notice that code is not always consistent in how a given tag is written.  We might say '<h1>' in one spot and '<H1>' in another.  In this case, they are exactly the same kind of tag.  Tag names are "case insensitive" meaning that it does not matter whether you use capital or lower case letters in writing them.  In fact, you could write your body tag as '<bOdY>', but that's not generally considered a good practice (it makes it harder to read).  On the other hand, there are places where you want the computer to be "case sensitive", meaning it the computer will distinguish between upper and lower case characters.
+
+white space web site
+
+Obviously, you usually don't want your text (that the user reads) to be case insensitive.  You want your sentences and proper names to start with Capital letters, but most other characters to be lower case (unless you want to yell, IN WHICH CASE USE 'ALL CAPS').  You generally don't want the browser to mess with that. You would probably be unhappy if the browser turned all your letters into lower case.  And people might think you're quite tightly wound if the browser converted everything to Upper Case.
+
+Don't worry about too many white spaces
+
+On the other hand, we usually do not want to worry about the amount of white space (spaces, tabs and returns) in between words and lines and paragraphs (well sometimes we do, but there's a tag for that).  In HTML, most extra white space will be ignored.   By 'extra', I mean more than one space (or tab) consecutively.  There are many places where you need to be sure to separate one thing from another with a space, but it generally doesn't matter if you put more spaces in there, your result will look the same.  Thus all three of the following elements should look exactly the same when you read it in the browser:
+```[html]
+ <H1> This is the Beginning </H1>
+ 
+ <H1>
+ 
+    This is the Beginning
+ 
+ </H1>
+ 
+ <h1>This is the Beginning</h1>
+```
+It might seem confusing at first, but this rule about white space is actually very convenient.  The third option might be a bit too cramped for your taste, while the second might seem to take up too much room in your source code.  Because it doesn't matter to the browser how much white space there is, you can use white space to make your code more visibly organized and easier to read (note the use of indentation in the second <H1> element above).
+
+Given that tag names are case insensitive (you can write them either way), you might think that everything in between < and > is case insensitive, but it is not that easy.  We have not learned much about attributes yet, but when we do we will discover that they are "case sensitive", thus these two elements will have different 'id's:
+```[html]
+ <p id=ThisOne>
+ 
+ <p id=thisone>
+```
+ Even though they're spelled the same, the differing cases indicate different names.  Note that distinguishing different ids solely by case (i.e. spelled the same but with different capitalization) is a really bad practice (opposite of best practice).  Instead you can use capitalization in other ways, like CamelCase.
+
+Any kind of Quotes for strings
+
+Finally, it will eventually be important to know about "strings".  Strings are just a series of characters.  They could be any characters like "Dingbats" or "ABC123^&*@aeiou".  They can even contain spaces as in "This is a string.".  Because they are so wildly variable (they can essentially be anything you can type), the computer needs us to indicate where a string begins and ends, which is typically done with quotation marks, either single (') or double (").  HTML tries to be helpful here.  You will find that in places where HTML is expecting certain types of strings (say a string without spaces), even if you do not use the quotation marks it will essentially insert them for you, thus:
+```[html]
+ <p id=MyName>
+ 
+ <p id="MyName">
+ 
+ <p id='MyName'>
+```
+.... are all equivalent.  It is also important to know that, in HTML, double and single quotes are almost interchangeable, but they have to match.  If you start a string with a double quote, the computer will not end it until it sees another double quote.  Any single quotes will be happily considered part of the string, which is handy if you need quotation marks in your string.  Because of this, if you create a string as ' "quote" ' (single quotes containing a double quoted string),  your string will have the letters <space>-"-q-u-o-t-e-"-<space> (with double quotes in the string and spaces outside those) as opposed to "quote" which will just have the letters q-u-o-t-e (no quotation marks or spaces in the string).  Nevertheless, best practice is to be consistent in your quotes, so it's best to quote them all the same way, even if the browser would understand it anyway.
+
+In summary:
+
+The idea is to take advantage of these flexibilities to create clean organized code that is easy for a human to comprehend.  I guess you could sum it all up with these simple dictums:
+
+Case matters, except when it doesn't - case matters for some things, like strings and attributes, but not others, like tag names.
+White space is ignored, except when it's not - White space is used to separate things, but adding more than one space will be the same as just one.  White space in strings is always just as you type it.
+Quotation marks are not part of a string, except when they are - Quotation marks enclose a string, but thanks to the flexibility of choice between single or double quotes, it is easy to include one or the other in your string.
+The important thing is to look good - You can take advantage of flexibility in capitalization and white space to make your code more readable and organized.
+Knowledge check 1.5.3 (not graded)
+0 puntos posibles (no calificados)
+True or False: Since HTML5 ignores white space, a tag can be spelled with spaces in it, i.e. "ht ml"
+False correcto
+True
+Enviar Algunos problemas tienen opciones como guardar, restablecer, sugerencias o mostrar respuesta. Estas opciones aparecen después de oprimir el botón Enviar.
+
+# Module 1: My first Web page   1.5 Best practices   Activity - Best practices and discussion
+
+#Activity - Best practices and discussion
+ Bookmark this page
+Activity - Best practices
+
+1. Compare and contrast these two different HTML Style Guides:
+
+jQuery - https://contribute.jquery.org/style-guide/html/
+Google - https://google.github.io/styleguide/htmlcssguide.html
+Are they consistent with each other? Are there some rules that don't seem to make sense?
+
+Can you find other style guides or coding standards that agree or disagree with some of the suggestions in one of these guides?
+
+2. Check out the W3C HTML Checker:
+
+Try "Direct Input" and type some HTML5 code with errors to see what it detects.
+Using "Validate by URI", try some popular websites and see if you can find any errors.
+
+# Module 1: My first Web page   1.6 More on tags   Tags we have already used
+
+# Tags we have already used
+ Bookmark this page
+Tags we have already used
+
+Now you can create a simple, empty, HTML page, and you know what tags are, though we have not said a lot about specific tags, what they mean, how many there are, etc.  We will start with the ones we have already seen:
+
+<!doctype> - This tag is special.  In fact, many folks don't even consider it a tag, as it is officially the DTD - Document Type Declaration.  Unlike most tags, it has no closing tag, not even a "/" at the end.  It is there to declare exactly what type of HTML the computer will find in this file.
+<html> - The html open and close tags wrap around nearly everything in your html file (except the doctype tag).  This essentially contains all of the HTML code in the file, which is generally everything (one big html element). Next week we will learn about attributes, and you will learn that you should always add a lang attribute to the html opening tag, to identify the default language of your page.
+<head> - The head element is where you put information that does not really appear in the body of the work.  For example, the <title> of the page, which typically appears on the window containing the page, is defined in the head section.
+<body> - The body section contains all of the content of your page, essentially what the user sees.  This could be text, pictures, links, videos, tables and so on.  In addition to the content, the body usually contains lots of other elements, each indicated by their own tags.
+<h1> - There are a whole collection of 'h' tags, <h1>, <h2>, <h3> . . . all the way up to <h6>.  Why there are 6 rather than 5 or 7 may be a bit of a mystery, but there it is.  They're generally used the same way you would use chapter or section headings in a book (don't confuse the h here with the <head> section, that is completely different).  An <h1> tag might be used as the title of the document (as it appears on the page, not the same as the aforementioned <title> element), or to indicate the outermost level in a group of nested sections.
+
+Though you theoretically should not think about what it looks like, it will typically appear as large, possibly bold text in your document, to mark a separation or beginning of some new section.  <h2> is usually a bit smaller, and <h3> smaller yet and so on down to <h6>.  This allows logical nesting of sections, though they should not be nested too deeply. Try not to skip levels of headers when nesting them. Headings are really useful for some assistive technology users and missing levels can be confusing.
+
+<p> - P is for 'paragraph', which is how much of your text information might be arranged.  Depending on the style you are using, text wrapped in a <p> tag may be indented or have extra vertical white space before starting.  When rendered on the web page, a p element will typically be a new line.
+
+You might notice that when discussing how these different elements are rendered (i.e. what they look like to the end user) you will find words like "typically", "possibly", and "generally".  It is a little picky; as you will learn in Week 3, it is possible to change the styling of one element to look like just about any other element.  You could style a <p> element so that it looks like an <h1>, though best practice would be not to do that.
+
+#  Module 1: My first Web page   1.6 More on tags   A few new tags to learn
+
+# A few new tags to learn
+ Bookmark this page
+A few new tags to learn
+
+There are a lot more tags, but we will just cover a few more for now, mostly because they are straightforward to use and you can see the effect in your web page when you use them:
+```[html]
+<q> - The q tag is for quotes.  This has no relationship to the somewhat confusing single and double quote characters, rather it's used when you want to quote a person or written work in your web page.  It is customarily displayed using quotation marks, again unrelated to strings. Thus <q>Brevity is beautiful</q> would be rendered as Brevity is beautiful.
+<blockquote> - If you want to quote a larger passage, you may want to use blockquote, which will typically set the quoted text apart from the surrounding text and indent it, to make clear that it is quoted text:
+Early to bed and early to rise, makes someone healthy, wealthy and wise - Benjamin Franklin
+<ul>, <ol> - These two tags are used to indicate a list of things.  The only difference is that <ol> is an "ordered" list, meaning the elements are in a particular order, and it might be a good idea to number them.  The "u" in <ul> stands for "unordered" and is used for a list of things where the order doesn't really matter, so it is usually rendered as a bulleted list, or something else without numbers.
+<li> - The li element is a "List Item", i.e. one item in the list.  As you might expect, this element only really makes sense nested inside a list (<ul> or <ol>).  In the final rendering, each li element would typically be preceded by a number or bullet, or something similar (but not necessarily).  Thus a list in HTML would be look something like this:
+<ul>
+   <li> First item in list </li>
+   <li> Second item in list </li>
+   . . .
+</ul>
+```
+This code might be rendered like this:
+
+Example of a list as it would appear on a web page
+
+There are a couple more tags I want to bring up at this point, but first a disclaimer.  We have been emphasizing the general rule that HTML is for the logical structure of your content, not what it looks like.  Well, nothing is perfect, including this goal.  There are some HTML elements that are primarily used to satisfy certain formatting requirements. 
+```[html]
+<hr> - This one might be debatable.  HR originally stood for "Horizontal Rule", i.e. a horizontal line across the width of the text.  It's still there in HTML5, but now is officially supposed to represent a "thematic break" in the content.  It would typically look like this:
+<br> - This one signifies a line break.  It is used for any number of purposes.  For example it can be an easy way to make sure that lines of poetry break where they're supposed to (less verbose than requiring each line to be a separate element).  Essentially it helps break the "white space" rule, where spaces and carriage returns are generally treated the same, the <br> tag is treated as a required carriage return.  Because it's an empty tag (doesn't contain any text or anything, just indicates a particular point in the text), it doesn't really need a close tag, so it can be written as <br>, though <br /> is also acceptable.  Oddly, in the browsers I tried, if you do add a close tag, as in <br></br>, the close tag is interpreted as a regular br tag, thus you get two line breaks in a row.  One other thing to remember is that the <br> tag implies a break even if there is no break in the text containing it, i.e. these two sentences would be formatted exactly the same:
+That which we call a rose <br>
+```
+
+By any other name would smell as sweet
+ 
+That which we call a rose <br> By any other name
+would smell as sweet
+Example of poetry as it might appear on a web page
+```[html]
+<pre> - This is another tag that helps you break the white space rule.  PRE stands for "PREformatted text", meaning "I've set this up just the way I want it, don't mess with it."  It generally implies a monospace font, and none of the spaces, tabs or carriage-returns are ignored.  It is very handy for illustrating bits of program code, or other "typewritten" material:
+    <pre>
+        <h1>Page Heading</h1>
+        <p>And here is the first paragraph</p>
+    </pre>
+```
+
+#  Module 1: My first Web page   1.6 More on tags   Live coding video: more HTML5
+
+# Live coding video: more HTML5
+ Bookmark this page
+Live coding video: more HTML5
+ 
+Knowledge check 1.6.3 (not graded)
+0 puntos posibles (no calificados)
+A 'ul' element isn't very useful unless it contains what kind of tags?
+
+sin responder
+Enviar Algunos problemas tienen opciones como guardar, restablecer, sugerencias o mostrar respuesta. Estas opciones aparecen después de oprimir el botón Enviar.
+
+# Module 1: My first Web page   1.6 More on tags   Activity - your first Web page and discussion
+
+# Activity - your first Web page and discussion
+ Bookmark this page
+Activity - Your first Web page
+
+For your first Web page, we propose that you:
+
+Quote some poetry, preserving the "line oriented" format
+Find a word that has at least 3 different definitions, list them in any order (this Web site may be helpful)
+Try out some different tags to see the effect they have on your Web page
+Note: If you wish to share your HTML code in the discussions, you can paste your code directly in a discussion forum post (highlight code and Ctrl+K/use the code widget) or use one of the following online code editors:
+
+JS Bin: http://jsbin.com (JS Bin tutorial)
+CodePen: http://codepen.io (CodePen tutorial)
+These are HTML, CSS, and JavaScript code editors that preview/showcase your code bits in your browser. It helps with cross-device testing, realtime remote pair programming.
+
+#  Module 1: My first Web page   1.6 More on tags   Recipe project - Module 1 and discussion
+
+#  Recipe project - Module 1 and discussion
+ Bookmark this page
+Recipe project - Module 1
+
+Throughout the course, we'll be building a simple project, adding to it with what we've learned in each module. This project will be a simple Web application that will allow you to browse different recipes.
+
+For now, we'll start off with a simple first draft using just what we've learned about HTML5 using tags we've covered.  We want to have the following components:
+
+A large title for the app, something like "My Favorite Recipes", or whatever you'd like to call it.
+A description of a recipe, just some plain text explaining what the recipe is and any other pertinent information.
+A set of steps to follow, numbered in order.
+When you're done you should have something like this:
+
+Recipe project example
+
+You will find below a video that explains step by step how to start your recipe project, using Intel XDK.
+
+IMPORTANT: since the video (below) was made, Intel have updated XDK. So the visuals may have changed a little, but no worries, what's important is the code ;)
+
+
+If you want to share your work/recipe in the discussion forum, please either copy-paste your lines of code into a JSBin or a CodePen project, or write your HTML5 code directly into one of these online tools.
+
+Live coding video: recipe project - Module 1
+ 
+#  Module 1: My first Web page   1.7 Exercises - Module 1   Exercises - Module 1
+
+# Exercises - Module 1
+ Bookmark this page
+Exercises - Module 1
+
+picture of a woman tracking her workout
+
+Now that you've gotten through this module's material, you can show what you've learned by completing these exercises.
+
+We advise you to do exercises after studying this module's material, while everything is still fresh in your mind.
+
+# Module 1: My first Web page   1.7 Exercises - Module 1   HTML5 and the Web (1-5)
+# Module 1: My first Web page   1.7 Exercises - Module 1   HTML5 tags (6-19)
+# Module 1: My first Web page   1.7 Exercises - Module 1   Coding (20-29)
