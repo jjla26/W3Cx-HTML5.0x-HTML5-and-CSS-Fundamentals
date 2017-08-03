@@ -168,7 +168,8 @@ Global attributes can be applied to all tags. They are common attributes. Exampl
 So attributes like id and class can be applied to any HTML tag.
 
 ```[html]
-<p id="para1" class="poetry" lang="en">The global attribute lang takes language codes for values. The code for English is 'en'.</p>
+<p id="para1" class="poetry" lang="en">The global attribute lang takes
+language codes for values. The code for English is 'en'.</p>
 
 <html lang="fr"></html> - The language attribute tells the browser that the contents of this document will be in french.
 <ul id="intro-list"></ul>
